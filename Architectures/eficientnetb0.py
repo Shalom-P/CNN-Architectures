@@ -2,24 +2,6 @@ import torch
 import torch.nn as nn
 from torch import nn, Tensor
 
-######################################################################################################################
-"""
-#Implements the growing cosine unit from 
-'Growing Cosine Unit: A Novel Oscillatory Activation Function That Can Speedup Training and Reduce Parameters in Convolutional Neural Networks'
-#https://arxiv.org/abs/2108.12943
-"""
-######################################################################################################################
-###growing cosine activation function
-class GCU(nn.Module):
-    def __init__(self,inplace=False):
-        super(GCU,self).__init__()  
-        self.inplace = inplace
-    def forward(self,x):
-        if self.inplace:
-            return x*torch.cos_(x)
-        else:
-            return x*torch.cos(x)
-
 ###stochastic depth layer
 ##################################################
 #only the stochastic depth layer has been copied from the orirginal pytorch implementation
@@ -290,6 +272,25 @@ class efficientnet_b0(nn.Module):
         x = torch.flatten(x,1)
         x = self.classifier(x)
         return x
+
+
+######################################################################################################################
+"""
+#Implements the growing cosine unit from 
+'Growing Cosine Unit: A Novel Oscillatory Activation Function That Can Speedup Training and Reduce Parameters in Convolutional Neural Networks'
+#https://arxiv.org/abs/2108.12943
+"""
+######################################################################################################################
+###growing cosine activation function
+class GCU(nn.Module):
+    def __init__(self,inplace=False):
+        super(GCU,self).__init__()  
+        self.inplace = inplace
+    def forward(self,x):
+        if self.inplace:
+            return x*torch.cos_(x)
+        else:
+            return x*torch.cos(x)
 
 
 if __name__=='__main__':
