@@ -139,7 +139,7 @@ class MbConv(nn.Module):
 #############################################################################################
 class efficientnet_b0_without_stochastic(nn.Module):
     def __init__(self,num_classes=2):
-        super(efficientnet_b0,self).__init__()
+        super(efficientnet_b0_without_stochastic,self).__init__()
         self.conv1 = Conv(in_channels=3,out_channels=32,kernel_size=3,stride=2,padding=1)
         self.part1 = MbConv1(32,16,kernel_size=3)
         # self.stoc1 = StochasticDepth(0.0,"row")
