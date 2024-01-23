@@ -103,7 +103,7 @@ class SEBlock(nn.Module):
 
     def forward(self, x):
         y = self.excitation(x)
-        return x.mul_(y)
+        return x.mul(y)
 
 
 
